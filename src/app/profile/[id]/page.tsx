@@ -2,7 +2,12 @@
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useCallback, useLayoutEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import toast from "react-hot-toast";
 
 const Profile = ({ params }: { params: { id: number } }) => {
@@ -18,7 +23,7 @@ const Profile = ({ params }: { params: { id: number } }) => {
     try {
       await axios.get("/api/users/logout");
       toast.success("Logout successful!");
-      router.push("/login");
+      router.replace("/login");
     } catch (error: any) {
       console.log(error.message);
       toast.error(error.message);

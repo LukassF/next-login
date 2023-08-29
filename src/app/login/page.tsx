@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState, useCallback, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const SignUp = () => {
   const router = useRouter();
@@ -24,22 +25,27 @@ const SignUp = () => {
   }, [user]);
 
   return (
-    <form className="flex flex-col w-1/2 gap-2 p-2">
-      <input
-        type="email"
-        placeholder="Email"
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-        value={user.password}
-      />
-      <button type="button" onClick={logInUser}>
-        Log In
-      </button>
-    </form>
+    <>
+      <form className="flex flex-col w-1/2 gap-2 p-2">
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+          value={user.password}
+        />
+        <button type="button" onClick={logInUser}>
+          Log In
+        </button>
+      </form>
+      <Link key={Math.random()} href={"/signup"}>
+        Sign Up
+      </Link>
+    </>
   );
 };
 

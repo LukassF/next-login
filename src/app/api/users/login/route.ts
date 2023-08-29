@@ -26,9 +26,11 @@ export async function POST(req: Request) {
     }
 
     const tokenData = {
-      id: rows[0].id,
-      username: rows[0].username,
-      email: rows[0].email,
+      data: {
+        id: rows[0].id,
+        username: rows[0].name,
+        email: rows[0].email,
+      },
     };
 
     const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {

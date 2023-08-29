@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getDataFromToken } from "./utils/getDataFromToken";
 
 export async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
