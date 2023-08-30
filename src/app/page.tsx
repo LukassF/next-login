@@ -1,39 +1,53 @@
-import ChatLog from "@/components/chat/ChatLog";
-import Form from "@/components/chat/Form";
+"use client";
+
 import Link from "next/link";
-import { db } from "@vercel/postgres";
-import { decodedTokenNoReq } from "@/utils/decodeTokenNoRequest";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import ChatPage from "@/components/chat/ChatPage";
 
-async function getData() {
-  const client = await db.connect();
-
-  const data =
-    await client.sql`SELECT c.Message AS msg, c.Date AS date, c.User_ID AS user_id, u.Name AS username,u.Email AS email FROM chat c JOIN users u ON c.User_ID=u.Id`;
-
-  return data.rows;
-}
-
-export default async function Home() {
-  const data = await getData();
-  const {
-    data: { id },
-  } = decodedTokenNoReq();
+export default function Home() {
+  const [availableChats, setAvailableChats] = useState<chat[]>();
+  const [currentUserId, setCurrentUserId] = useState<number>();
+  const [selectedChat, setSelectedChat] = useState<chat>();
+  useEffect(() => {
+    axios
+      .get("/api/chats/getchats")
+      .then((chats) => {
+        setAvailableChats(chats.data.chats);
+        setCurrentUserId(chats.data.currentUserId);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start p-24">
-      <nav>
-        <Link key={Math.random()} href={"/signup"}>
-          Sign Up
-        </Link>
-        <Link key={Math.random()} href={"/login"}>
-          Log In
-        </Link>
-      </nav>
+    <main className="min-h-screen bg-cover bg-center bg-[url('https://wallpaper.dog/large/17027482.jpg')] p-8 flex items-stretch">
+      <section className="bg-slate-300 min-w-full rounded-xl p-5">
+        <nav className="flex flex-col">
+          <Link key={Math.random()} href={"/signup"}>
+            Sign Up
+          </Link>
+          <Link key={Math.random()} href={"/login"}>
+            Log In
+          </Link>
+        </nav>
+        <div className="flex flex-col">
+          {availableChats &&
+            availableChats.map((chat) => (
+              <button onClick={() => setSelectedChat(chat)}>
+                {chat.user_id_1} - {chat.user_id_2}
+              </button>
+            ))}
+        </div>
 
-      <div>
-        <ChatLog chats={data as Array<chatsProps>} currentUserId={id} />
-        <Form />
-      </div>
+        <div>
+          {selectedChat && currentUserId && (
+            <ChatPage
+              selectedChat={selectedChat}
+              currentUserId={currentUserId}
+            />
+          )}
+        </div>
+      </section>
     </main>
   );
 }

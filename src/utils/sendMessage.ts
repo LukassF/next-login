@@ -3,7 +3,13 @@
 import { sql } from "@vercel/postgres";
 import { decodedTokenNoReq } from "./decodeTokenNoRequest";
 
-export async function sendMessage(formData: FormData) {
+export async function sendMessage({
+  formData,
+  chatId,
+}: {
+  formData: FormData;
+  chatId: number;
+}) {
   "use server";
   const Pusher = require("pusher");
 
@@ -13,9 +19,9 @@ export async function sendMessage(formData: FormData) {
 
   const currentUser: any = decodedTokenNoReq();
   const dateNow = new Date();
-  await sql`INSERT INTO chat(Message, User_ID, Date) VALUES (${
+  await sql`INSERT INTO messages(Message, User_ID, Date,Chat_id) VALUES (${
     message as any
-  }, ${currentUser.data.id}, ${dateNow as any})`;
+  }, ${currentUser.data.id}, ${dateNow as any},${chatId})`;
 
   const pusher = new Pusher({
     appId: process.env.PUSHER_APP_ID,
@@ -29,6 +35,7 @@ export async function sendMessage(formData: FormData) {
     msg: message,
     date: dateNow,
     user_id: currentUser.data.id,
+    chat_id: 1,
     username: currentUser.data.username,
     email: currentUser.data.email,
   });

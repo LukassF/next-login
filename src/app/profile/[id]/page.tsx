@@ -23,7 +23,7 @@ const Profile = ({ params }: { params: { id: number } }) => {
     try {
       await axios.get("/api/users/logout");
       toast.success("Logout successful!");
-      router.replace("/login");
+      router.push("/");
     } catch (error: any) {
       console.log(error.message);
       toast.error(error.message);

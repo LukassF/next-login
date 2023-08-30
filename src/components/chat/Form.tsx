@@ -3,13 +3,13 @@
 import { sendMessage } from "@/utils/sendMessage";
 import { useRef } from "react";
 
-const Form = () => {
+const Form = ({ selectedChat }: { selectedChat: number }) => {
   const formRef = useRef<HTMLFormElement>(null);
 
   return (
     <form
       action={async (data: FormData) => {
-        await sendMessage(data);
+        await sendMessage({ formData: data, chatId: selectedChat });
         formRef.current?.reset();
       }}
       ref={formRef}
@@ -18,7 +18,7 @@ const Form = () => {
         type="text"
         placeholder="Your message."
         name="message"
-        className="border-2 border-black border-solid"
+        className="border-2 border-black border-solid text-black"
       />
       <button type="submit" className="bg-slate-900 text-slate-100 py-1 px-3">
         Send

@@ -10,7 +10,7 @@ const Message = ({
   return (
     <div
       className={`py-1 px-4  text-slate-100 rounded-xl ${
-        currentUserId === message.user_id
+        currentUserId == message.user_id
           ? "self-end bg-slate-800"
           : "bg-slate-500"
       }`}
