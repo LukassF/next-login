@@ -1,23 +1,38 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, FC } from "react";
 import axios from "axios";
 import ChatPage from "@/components/chat/ChatPage";
+import AsideChats from "@/components/addingUsers/AsideChats";
 
 export default function Home() {
-  const [availableChats, setAvailableChats] = useState<chat[]>();
-  const [currentUserId, setCurrentUserId] = useState<number>();
+  const [currentUser, setCurrentUser] = useState<currentUser>();
   const [selectedChat, setSelectedChat] = useState<chat>();
+  const [helper, setHelper] = useState<chat[]>();
+  const asideChatsRef = useRef<any>(null);
+
   useEffect(() => {
     axios
       .get("/api/chats/getchats")
       .then((chats) => {
-        setAvailableChats(chats.data.chats);
-        setCurrentUserId(chats.data.currentUserId);
+        setHelper(chats.data.chats);
+        setCurrentUser(chats.data.currentUser);
+      })
+      .then(() => {
+        if (asideChatsRef.current) console.log(asideChatsRef);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    if (asideChatsRef.current)
+      asideChatsRef.current.changeAvailableChats(helper);
+  }, [helper]);
+
+  // useEffect(() => {
+  //   console.log(selectedChat);
+  // }, [selectedChat]);
 
   return (
     <main className="min-h-screen bg-cover bg-center bg-[url('https://wallpaper.dog/large/17027482.jpg')] p-8 flex items-stretch">
@@ -30,20 +45,21 @@ export default function Home() {
             Log In
           </Link>
         </nav>
-        <div className="flex flex-col">
-          {availableChats &&
-            availableChats.map((chat) => (
-              <button onClick={() => setSelectedChat(chat)}>
-                {chat.user_id_1} - {chat.user_id_2}
-              </button>
-            ))}
-        </div>
+
+        {currentUser && (
+          <AsideChats
+            ref={asideChatsRef}
+            selectedChat={selectedChat}
+            setSelectedChat={setSelectedChat}
+            currentUser={currentUser}
+          />
+        )}
 
         <div>
-          {selectedChat && currentUserId && (
+          {selectedChat && currentUser && (
             <ChatPage
               selectedChat={selectedChat}
-              currentUserId={currentUserId}
+              currentUserId={currentUser.id}
             />
           )}
         </div>

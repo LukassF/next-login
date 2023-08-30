@@ -15,7 +15,11 @@ const Message = ({
           : "bg-slate-500"
       }`}
     >
-      {message.msg}
+      {message.msg}{" "}
+      <span className="text-xs">
+        {new Date(message.date).getHours()}:
+        {new Date(message.date).getMinutes()}
+      </span>
     </div>
   );
 };

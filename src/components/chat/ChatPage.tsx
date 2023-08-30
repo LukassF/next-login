@@ -13,17 +13,29 @@ const ChatPage = ({
   currentUserId: number;
 }) => {
   const [messages, setMessages] = useState<chatsProps[]>();
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`/api/chats/getmessages/${selectedChat.id}`)
-      .then((res) => setMessages(res.data.messages));
+      .then((res) => setMessages(res.data.messages))
+      .finally(() => setLoading(false));
   }, [selectedChat]);
+
+  // useEffect(() => {
+
+  // },[])
 
   return (
     <main className="flex flex-col items-center justify-start mt-10">
       {messages && currentUserId && (
         <div>
-          <ChatLog messages={messages} currentUserId={currentUserId} />
+          <ChatLog
+            messages={messages}
+            currentUserId={currentUserId}
+            loading={loading}
+          />
           <Form selectedChat={selectedChat.id} />
         </div>
       )}

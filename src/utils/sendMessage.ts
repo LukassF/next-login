@@ -23,6 +23,15 @@ export async function sendMessage({
     message as any
   }, ${currentUser.data.id}, ${dateNow as any},${chatId})`;
 
+  const currentChat = await sql`SELECT * FROM chats WHERE chats.Id=${chatId}`;
+
+  const userNumber =
+    currentChat.rows[0].user_id_1 == currentUser.data.id ? "1" : "2";
+
+  userNumber === "1"
+    ? await sql`UPDATE chats SET user2_seen='0' WHERE chats.Id=${chatId}`
+    : await sql`UPDATE chats SET user1_seen='0' WHERE chats.Id=${chatId}`;
+
   const pusher = new Pusher({
     appId: process.env.PUSHER_APP_ID,
     key: process.env.NEXT_PUBLIC_PUSHER_KEY,
@@ -35,8 +44,14 @@ export async function sendMessage({
     msg: message,
     date: dateNow,
     user_id: currentUser.data.id,
-    chat_id: 1,
+    chat_id: chatId,
     username: currentUser.data.username,
     email: currentUser.data.email,
+  });
+
+  pusher.trigger("hasSeen", "toggleSeen", {
+    chatId: chatId.toString(),
+    user: userNumber === "1" ? "2" : "1",
+    seen: false,
   });
 }

@@ -30,7 +30,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-
-  //   const users = await client.sql`SELECT * FROM USERS`;
-  //   return NextResponse.json({ users: users.rows });
 }

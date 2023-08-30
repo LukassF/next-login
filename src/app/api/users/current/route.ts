@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   try {
     const currentUserId = await getDataFromToken(request);
     const currentUser =
-      await client.sql`SELECT * FROM users WHERE id=${currentUserId}`;
+      await client.sql`SELECT * FROM users WHERE id=${currentUserId.id}`;
 
     return NextResponse.json({
       user: currentUser.rows[0],
