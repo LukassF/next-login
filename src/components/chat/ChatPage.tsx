@@ -35,6 +35,7 @@ const ChatPage = ({
             messages={messages}
             currentUserId={currentUserId}
             loading={loading}
+            selectedChat={selectedChat}
           />
           <Form selectedChat={selectedChat.id} />
         </div>

@@ -19,6 +19,7 @@ export async function GET(
 
     const currentChat =
       await sql`SELECT * FROM chats WHERE chats.Id=${params.chatid}`;
+    console.log("ran");
 
     const userNumber = currentChat.rows[0].user_id_1 == userId ? "1" : "2";
 

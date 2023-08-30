@@ -33,7 +33,8 @@ const AsideChats = forwardRef((props: any, ref) => {
           break;
       }
     });
-  }, [availableChats]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [availableChats, props.currentUser.id]);
 
   useImperativeHandle(ref, () => ({
     changeAvailableChats(data: chat[]) {
@@ -54,7 +55,6 @@ const AsideChats = forwardRef((props: any, ref) => {
 
     var channel2 = pusher.subscribe("hasSeen");
     channel2.bind("toggleSeen", function (data: any) {
-      console.log(data.chatId !== props.selectedChat);
       if (data.seen)
         setNewHasSeen((prev) => {
           if (!prev.find((item) => item == data.chatId))
@@ -78,10 +78,6 @@ const AsideChats = forwardRef((props: any, ref) => {
       pusher.unsubscribe("hasSeen");
     };
   }, [userNumber, props.selectedChat]);
-
-  // useEffect(() => {
-  //   console.log(newHasSeen);
-  // }, [newHasSeen]);
 
   const determineUser = useCallback(
     (chat: chat) => {

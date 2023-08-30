@@ -30,10 +30,6 @@ export default function Home() {
       asideChatsRef.current.changeAvailableChats(helper);
   }, [helper]);
 
-  // useEffect(() => {
-  //   console.log(selectedChat);
-  // }, [selectedChat]);
-
   return (
     <main className="min-h-screen bg-cover bg-center bg-[url('https://wallpaper.dog/large/17027482.jpg')] p-8 flex items-stretch">
       <section className="bg-slate-300 min-w-full rounded-xl p-5">

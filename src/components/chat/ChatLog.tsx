@@ -3,19 +3,26 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Message from "./Message";
 import Pusher from "pusher-js";
+import axios from "axios";
 
 const ChatLog = ({
   messages,
   currentUserId,
   loading,
+  selectedChat,
 }: {
   messages: Array<chatsProps>;
   currentUserId: number;
   loading: boolean;
+  selectedChat: chat;
 }) => {
   const [logs, setLogs] = useState(messages);
   const [sortedLogs, setSortedLogs] = useState<chatsProps[]>();
   const messageEndRef = useRef<HTMLInputElement>(null);
+
+  window.onbeforeunload = async function () {
+    await axios.get(`/api/chats/getmessages/${selectedChat.id}`);
+  };
 
   useLayoutEffect(() => {
     setLogs(messages);
@@ -28,13 +35,13 @@ const ChatLog = ({
 
     var channel = pusher.subscribe("chat");
     channel.bind("message", function (data: any) {
-      setLogs((prev) => [...prev, data]);
+      if (data.chat_id === selectedChat.id) setLogs((prev) => [...prev, data]);
     });
 
     return () => {
       pusher.unsubscribe("chat");
     };
-  }, []);
+  }, [selectedChat]);
 
   useEffect(() => {
     //sorting messages by date
