@@ -111,6 +111,7 @@ const AsideChats = forwardRef((props: any, ref) => {
 
             return (
               <button
+                key={chat.id}
                 onClick={() => props.setSelectedChat(chat)}
                 className={`${
                   hasSeen ? "text-stone-600" : "text-stone-900 font-extrabold"
