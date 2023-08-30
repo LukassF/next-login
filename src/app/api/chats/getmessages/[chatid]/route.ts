@@ -23,7 +23,7 @@ export async function GET(
 
     const userNumber = currentChat.rows[0].user_id_1 == userId ? "1" : "2";
 
-    pusher.trigger("hasSeen", "toggleSeen", {
+    await pusher.trigger("hasSeen", "toggleSeen", {
       chatId: params.chatid,
       user: userNumber,
       seen: true,

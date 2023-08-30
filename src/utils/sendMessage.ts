@@ -40,7 +40,7 @@ export async function sendMessage({
     useTLS: true,
   });
 
-  pusher.trigger("chat", "message", {
+  await pusher.trigger("chat", "message", {
     msg: message,
     date: dateNow,
     user_id: currentUser.data.id,
@@ -49,7 +49,7 @@ export async function sendMessage({
     email: currentUser.data.email,
   });
 
-  pusher.trigger("hasSeen", "toggleSeen", {
+  await pusher.trigger("hasSeen", "toggleSeen", {
     chatId: chatId.toString(),
     user: userNumber === "1" ? "2" : "1",
     seen: false,

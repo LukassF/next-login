@@ -40,7 +40,7 @@ export async function createChat(data: FormData) {
     useTLS: true,
   });
 
-  pusher.trigger("newFriend", "create", {
+  await pusher.trigger("newFriend", "create", {
     id: createdChat.rows[0].id,
     user_id_1: createdChat.rows[0].user_id_1,
     user_id_2: createdChat.rows[0].user_id_2,
