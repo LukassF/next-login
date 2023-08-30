@@ -127,4 +127,5 @@ const AsideChats = forwardRef((props: any, ref) => {
   );
 });
 
+AsideChats.displayName = "AsideChats";
 export default AsideChats;
