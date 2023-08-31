@@ -5,6 +5,7 @@ import Message from "./Message";
 import Pusher from "pusher-js";
 import axios from "axios";
 import { Watch } from "react-loader-spinner";
+import Divider from "../custom/Divider";
 
 const ChatLog = ({
   messages,
@@ -87,13 +88,39 @@ const ChatLog = ({
           </div>
         ) : (
           sortedLogs &&
-          sortedLogs.map((message: chatsProps) => (
-            <Message
-              message={message}
-              key={Math.random()}
-              currentUserId={currentUserId}
-            />
-          ))
+          sortedLogs.map((message: chatsProps, i: number) => {
+            const deltaTime =
+              i + 1 < sortedLogs.length
+                ? Math.round(
+                    //@ts-ignore
+                    new Date(sortedLogs[i + 1].date) - new Date(message.date)
+                  ) /
+                  1000 /
+                  60
+                : 0;
+
+            return (
+              <>
+                {/* Initial Divider */}
+                {i === 0 && <Divider date={message.date} margin="mb-10" />}
+
+                <Message
+                  message={message}
+                  key={i}
+                  currentUserId={currentUserId}
+                  nextmessage={
+                    i + 1 < sortedLogs.length ? sortedLogs[i + 1].user_id : 0
+                  }
+                  deltaTime={deltaTime}
+                />
+
+                {/* Divider */}
+                {deltaTime > 10 && (
+                  <Divider date={sortedLogs[i + 1].date} margin="my-10" />
+                )}
+              </>
+            );
+          })
         )}
         <div ref={messageEndRef}></div>
       </div>

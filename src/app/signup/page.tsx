@@ -30,9 +30,9 @@ const SignUp = () => {
   const signUpUser = useCallback(async () => {
     let errorContent: string = "";
     if (
-      user.name.length > 5 &&
-      user.email.length > 5 &&
-      user.password.length > 5
+      user.name.length >= 5 &&
+      user.email.length >= 5 &&
+      user.password.length >= 5
     )
       try {
         setLoading(true);

@@ -16,6 +16,7 @@ const config: Config = {
       maxWidth: {
         "1/2": "50%",
         "1/3": "40%",
+        "8/10": "80%",
       },
       minWidth: {
         "100": "100px",
