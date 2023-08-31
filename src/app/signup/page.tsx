@@ -6,7 +6,13 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Watch } from "react-loader-spinner";
 import Link from "next/link";
-import { errorClass } from "../login/page";
+
+const errorClass = [
+  "bg-rose-100",
+  "border-2",
+  "border-red-600",
+  "border-solid",
+];
 
 const SignUp = () => {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -49,6 +55,7 @@ const SignUp = () => {
       if (passwordRef.current)
         passwordRef.current.classList.toggle(cls, user.password.length < 5);
     });
+    //react-hooks/exhaustive-deps
   }, [user]);
 
   return (

@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export const errorClass = [
+const errorClass = [
   "bg-rose-100",
   "border-2",
   "border-red-600",
@@ -59,6 +59,7 @@ const LogIn = () => {
           user.password.length === 0 || errorContent === "Invalid password"
         );
     });
+    //react-hooks/exhaustive-deps
   }, [user]);
 
   return (
