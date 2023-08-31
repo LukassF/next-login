@@ -117,6 +117,7 @@ const AsideChats = forwardRef((props: any, ref) => {
 
             return (
               <ChannelButton
+                key={Math.random()}
                 chat={chat}
                 selectedChat={props.selectedChat}
                 username={username}
