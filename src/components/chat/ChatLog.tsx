@@ -4,17 +4,20 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Message from "./Message";
 import Pusher from "pusher-js";
 import axios from "axios";
+import { Watch } from "react-loader-spinner";
 
 const ChatLog = ({
   messages,
   currentUserId,
   loading,
   selectedChat,
+  interlocutor,
 }: {
-  messages: Array<chatsProps>;
+  messages: Array<chatsProps> | undefined;
   currentUserId: number;
   loading: boolean;
   selectedChat: chat;
+  interlocutor: { name: string; email: string };
 }) => {
   const [logs, setLogs] = useState(messages);
   const [sortedLogs, setSortedLogs] = useState<chatsProps[]>();
@@ -35,7 +38,7 @@ const ChatLog = ({
 
     var channel = pusher.subscribe("chat");
     channel.bind("message", function (data: any) {
-      if (data.chat_id === selectedChat.id) setLogs((prev) => [...prev, data]);
+      if (data.chat_id === selectedChat.id) setLogs((prev) => [...prev!, data]);
     });
 
     return () => {
@@ -45,12 +48,13 @@ const ChatLog = ({
 
   useEffect(() => {
     //sorting messages by date
-    setSortedLogs(
-      logs.sort(function (a, b) {
-        //@ts-ignore
-        return new Date(a.date) - new Date(b.date);
-      })
-    );
+    if (logs)
+      setSortedLogs(
+        logs.sort(function (a, b) {
+          //@ts-ignore
+          return new Date(a.date) - new Date(b.date);
+        })
+      );
   }, [logs]);
 
   useEffect(() => {
@@ -60,9 +64,27 @@ const ChatLog = ({
 
   return (
     <>
-      <div className="w-full bg-slate-100 h-96 overflow-auto flex flex-col justify-start items-start gap-1 p-2">
+      <div className="w-full bg-slate-100 overflow-y-auto overflow-x-hidden flex flex-col justify-start items-start gap-1 px-5 py-8 h-9/10 scrollbar scrollbar-thin">
+        <h1 className="text-center w-full font-bold text-2xl">
+          This is the start of a new chat with {interlocutor.name}.
+        </h1>
+        <p className="w-full lg:w-3/4 self-center text-center text-sm mt-4 mb-20">
+          Send messages below or wait for messages from {interlocutor.name}.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
+          inventore eveniet sint aperiam iste. Dolore, incidunt repellendus? Eos
+          at repellat dolore laudantium est distinctio voluptatem! Commodi
+          voluptatem iusto ratione nobis.
+        </p>
         {loading ? (
-          <div>Loading...</div>
+          <div className="w-full flex items-center justify-center">
+            <Watch
+              height="50"
+              width="50"
+              radius="48"
+              color="#312E81"
+              ariaLabel="watch-loading"
+            />
+          </div>
         ) : (
           sortedLogs &&
           sortedLogs.map((message: chatsProps) => (

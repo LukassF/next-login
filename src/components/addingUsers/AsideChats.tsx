@@ -9,6 +9,8 @@ import {
 } from "react";
 import AddForm from "./AddForm";
 import Pusher from "pusher-js";
+import ChannelButton from "../custom/ChannelButton";
+import toast from "react-hot-toast";
 
 const AsideChats = forwardRef((props: any, ref) => {
   const [availableChats, setAvailableChats] = useState<chat[]>([]);
@@ -50,7 +52,8 @@ const AsideChats = forwardRef((props: any, ref) => {
 
     var channel1 = pusher.subscribe("newFriend");
     channel1.bind("create", function (data: any) {
-      setAvailableChats((prev) => [...prev, data]);
+      if (data.error) toast.error(data.error);
+      else setAvailableChats((prev) => [...prev, data]);
     });
 
     var channel2 = pusher.subscribe("hasSeen");
@@ -101,28 +104,40 @@ const AsideChats = forwardRef((props: any, ref) => {
   );
 
   return (
-    <aside className="w-1/3 bg-slate-400">
-      <div className="flex flex-col">
-        {availableChats &&
+    <aside className="flex-1 bg-slate-300 flex flex-col gap-5 px-4 py-6 rounded-2xl">
+      <AddForm />
+      <hr className="bg-opacity-50"></hr>
+      {/* fix scrollbar!!! */}
+      <div className=" scrollbar flex flex-col gap-2 scroll-px-2 h-full overflow-y-auto scrollbar-track-blue-900 scrollbar-thin">
+        {availableChats && availableChats.length > 0 ? (
           availableChats.map((chat) => {
             const { email, username } = determineUser(chat);
 
             const hasSeen = newHasSeen.includes(chat.id.toString());
 
             return (
-              <button
-                key={chat.id}
-                onClick={() => props.setSelectedChat(chat)}
-                className={`${
-                  hasSeen ? "text-stone-600" : "text-stone-900 font-extrabold"
-                }`}
-              >
-                {username} {email}
-              </button>
+              <ChannelButton
+                chat={chat}
+                selectedChat={props.selectedChat}
+                username={username}
+                email={email}
+                setSelectedChat={props.setSelectedChat}
+                hasSeen={hasSeen}
+              />
             );
-          })}
+          })
+        ) : (
+          <div>
+            <h2 className="text-slate-600 font-bold text-center mb-3">
+              No available chats
+            </h2>
+            <p className="text-xs text-slate-500 text-center px-5">
+              Add friends with whom you want to talk, by typing their username
+              or the email connected to their account, in the text field above.
+            </p>
+          </div>
+        )}
       </div>
-      <AddForm />
     </aside>
   );
 });

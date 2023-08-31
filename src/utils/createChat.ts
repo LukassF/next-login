@@ -6,6 +6,13 @@ import { decodedTokenNoReq } from "./decodeTokenNoRequest";
 export async function createChat(data: FormData) {
   "use server";
   const Pusher = require("pusher");
+  const pusher = new Pusher({
+    appId: process.env.PUSHER_APP_ID,
+    key: process.env.NEXT_PUBLIC_PUSHER_KEY,
+    secret: process.env.PUSHER_SECRET,
+    cluster: "eu",
+    useTLS: true,
+  });
 
   const user = data.get("user");
 
@@ -20,25 +27,27 @@ export async function createChat(data: FormData) {
   if (
     foundUser.rows.length === 0 ||
     foundUser.rows[0].id === currentUser.data.id
-  )
+  ) {
+    await pusher.trigger("newFriend", "create", {
+      error: "Cannot find user.",
+    });
     return;
+  }
 
   const existingChats =
     await sql`SELECT * FROM chats WHERE (chats.user_id_1=${currentUser.data.id} OR chats.user_id_2=${currentUser.data.id}) AND (chats.user_id_1=${foundUser.rows[0].id} OR chats.user_id_2=${foundUser.rows[0].id})`;
 
-  if (existingChats.rows.length !== 0) return;
+  if (existingChats.rows.length !== 0) {
+    await pusher.trigger("newFriend", "create", {
+      error: "Chat already exisits.",
+    });
+    return;
+  }
+
   await sql`INSERT INTO chats (user_id_1, user_id_2,user1_seen,user2_seen) VALUES (${currentUser.data.id},${foundUser.rows[0].id},'0','0')`;
 
   const createdChat =
     await sql`SELECT c.Id, c.user_id_1, c.user_id_2,c.user1_seen,c.user2_seen, u1.Name as name1, u1.Email as email1, u2.Name as name2, u2.Email as email2 FROM chats c JOIN users u1 ON c.user_id_1=u1.Id JOIN users u2 ON c.user_id_2=u2.Id WHERE user_id_1=${currentUser.data.id} AND user_id_2=${foundUser.rows[0].id}`;
-
-  const pusher = new Pusher({
-    appId: process.env.PUSHER_APP_ID,
-    key: process.env.NEXT_PUBLIC_PUSHER_KEY,
-    secret: process.env.PUSHER_SECRET,
-    cluster: "eu",
-    useTLS: true,
-  });
 
   await pusher.trigger("newFriend", "create", {
     id: createdChat.rows[0].id,

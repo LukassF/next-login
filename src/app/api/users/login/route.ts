@@ -8,9 +8,11 @@ export async function POST(req: Request) {
 
   try {
     const reqBody = await req.json();
-    const { email, password } = reqBody;
+    const { nameOrEmail, password } = reqBody;
 
-    const { rows } = await client.sql`SELECT * FROM users WHERE Email=${email}`;
+    const { rows } = nameOrEmail.includes("@")
+      ? await client.sql`SELECT * FROM users WHERE Email=${nameOrEmail}`
+      : await client.sql`SELECT * FROM users WHERE Name=${nameOrEmail}`;
 
     if (rows.length === 0) {
       return NextResponse.json(

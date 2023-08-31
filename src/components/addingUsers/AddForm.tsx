@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import { createChat } from "@/utils/createChat";
+import Input from "../custom/Input";
 
 const AddForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -9,19 +10,22 @@ const AddForm = () => {
     <form
       action={async (data: FormData) => {
         await createChat(data);
-        // await sendMessage({ formData: data, chatId: selectedChat });
         formRef.current?.reset();
       }}
       ref={formRef}
+      className="flex gap-2 justify-around h-10"
     >
-      <input
+      <Input
         type="text"
         name="user"
         placeholder="Find others to chat with!"
-        className="border-2 border-black border-solid text-black"
+        className=""
       />
-      <button type="submit" className="bg-slate-900 text-slate-100 py-1 px-3">
-        Start chat
+      <button
+        type="submit"
+        className="bg-slate-900 bg-opacity-50 text-slate-100 aspect-square rounded-full w-10"
+      >
+        <i className="fa fa-add"></i>
       </button>
     </form>
   );

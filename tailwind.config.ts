@@ -15,9 +15,28 @@ const config: Config = {
       },
       maxWidth: {
         "1/2": "50%",
+        "1/3": "40%",
+      },
+      minWidth: {
+        "100": "100px",
+      },
+      width: {
+        "9/10": "90%",
+        "7/10": "70%",
+        "1/10": "10%",
+      },
+      minHeight: {
+        "50px": "50px",
+      },
+      height: {
+        "9/10": "90%",
+        "1/10": "10%",
+      },
+      fontSize: {
+        "10px": "10px",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };
 export default config;
