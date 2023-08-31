@@ -11,6 +11,7 @@ const Message = ({
 }) => {
   const isMine = currentUserId == message.user_id;
   const isNextElse = nextmessage !== message.user_id || deltaTime > 10;
+  const timezoneOffset = new Date(message.date).getTimezoneOffset();
 
   return (
     <div
@@ -52,8 +53,15 @@ const Message = ({
           isMine ? "right-14" : "left-14"
         } -bottom-5 text-slate-600 font-bold`}
       >
-        {new Date(message.date).getHours().toString().padStart(2, "0")}:
-        {new Date(message.date).getMinutes().toString().padStart(2, "0")}
+        {(new Date(message.date).getHours() + timezoneOffset / 60 > 24
+          ? new Date(message.date).getHours() + timezoneOffset / 60 - 24
+          : new Date(message.date).getHours() + timezoneOffset / 60 < 0
+          ? new Date(message.date).getHours() + timezoneOffset / 60 + 24
+          : new Date(message.date).getHours() + timezoneOffset / 60
+        )
+          .toString()
+          .padStart(2, "0")}
+        :{new Date(message.date).getMinutes().toString().padStart(2, "0")}
       </span>
     </div>
   );
