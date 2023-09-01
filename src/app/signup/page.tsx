@@ -105,7 +105,7 @@ const SignUp = () => {
                 e.preventDefault();
                 signUpUser();
               }}
-              className="h-14 w-full min-w-72 flex justify-center items-center py-2 px-5 rounded-2xl self-center border-4 border-solid border-indigo-900 text-indigo-900 font-bold text-xl hover:bg-indigo-900 hover:text-slate-100 transition-all"
+              className="h-14 w-full min-w-72 flex justify-center items-center py-2 px-5 rounded-2xl self-center border-4 border-solid border-indigo-900 text-indigo-900 font-bold text-xl hover:bg-indigo-900 hover:text-slate-100 focus:bg-indigo-900 focus:text-slate-100 transition-all"
             >
               {loading ? (
                 <Watch
@@ -126,7 +126,7 @@ const SignUp = () => {
           <Link
             key={Math.random()}
             href={"/login"}
-            className=" h-14 w-full min-w-72 text-center opacity-70  py-2 px-5 rounded-2xl self-center border-4 border-solid border-slate-600 text-slate-600 font-bold text-xl hover:bg-slate-600 hover:text-slate-100 transition-all"
+            className=" h-14 w-full min-w-72 flex justify-center items-center opacity-70  py-2 px-5 rounded-2xl self-center border-4 border-solid border-slate-600 text-slate-600 font-bold text-xl hover:bg-slate-600 hover:text-slate-100 transition-all"
           >
             Log In
           </Link>

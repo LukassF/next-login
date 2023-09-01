@@ -120,7 +120,7 @@ const LogIn = () => {
           <Link
             key={Math.random()}
             href={"/signup"}
-            className=" h-14 w-full min-w-72 text-center opacity-70  py-2 px-5 rounded-2xl self-center border-4 border-solid border-slate-600 text-slate-600 font-bold text-xl hover:bg-slate-600 hover:text-slate-100 transition-all"
+            className=" h-14 w-full min-w-72 flex justify-center items-center opacity-70  py-2 px-5 rounded-2xl self-center border-4 border-solid border-slate-600 text-slate-600 font-bold text-xl hover:bg-slate-600 hover:text-slate-100 transition-all"
           >
             Sign Up
           </Link>
