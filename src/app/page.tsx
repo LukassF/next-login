@@ -110,7 +110,7 @@ export default function Home() {
             <div className="hidden md:block h-full w-full bg-cover bg-center overflow-hidden bg-[url('https://t3.ftcdn.net/jpg/04/07/01/16/360_F_407011689_Umf4nMU8bl4Lsr5mYd0x6Oo9UnvnIfoc.jpg')] rounded-2xl">
               <div className="w-full h-full backdrop-blur rounded-xl p-10 bg-gradient-to-b from-stone-500 via-transparent to-stone-500 flex flex-col gap-10">
                 <h1 className="text-7xl lg:text-8xl text-indigo-900 font-extrabold">
-                  Text'em
+                  Text&aposem
                 </h1>
                 <h3 className="text-4xl text-slate-100 font-bold">
                   Chat with friends and strangers alike!

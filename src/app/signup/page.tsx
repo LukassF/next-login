@@ -59,7 +59,7 @@ const SignUp = () => {
         <article className="flex flex-col items-center justify-center gap-4 px-5 sm:px-20">
           <h1 className="text-4xl sm:text-5xl font-medium text-center">
             Welcome to{" "}
-            <span className="text-indigo-900 font-bold">Text'em</span>!
+            <span className="text-indigo-900 font-bold">Text&aposem</span>!
           </h1>
           <h2 className="text-xl font-medium text-slate-600">Sign up below</h2>
           <form className="flex flex-col items-center w-full w-1/2 gap-4">
