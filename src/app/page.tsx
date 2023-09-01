@@ -110,7 +110,7 @@ export default function Home() {
             <div className="hidden md:block h-full w-full bg-cover bg-center overflow-hidden bg-[url('https://t3.ftcdn.net/jpg/04/07/01/16/360_F_407011689_Umf4nMU8bl4Lsr5mYd0x6Oo9UnvnIfoc.jpg')] rounded-2xl">
               <div className="w-full h-full backdrop-blur rounded-xl p-10 bg-gradient-to-b from-stone-500 via-transparent to-stone-500 flex flex-col gap-10">
                 <h1 className="text-7xl lg:text-8xl text-indigo-900 font-extrabold">
-                  Text&aposem
+                  Text&apos;em
                 </h1>
                 <h3 className="text-4xl text-slate-100 font-bold">
                   Chat with friends and strangers alike!
@@ -121,44 +121,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-
-        {/* <nav className="bg-slate-100 p-4 min-w-100 flex flex-col justify-between items-center rounded-2xl">
-          <Link
-            key={Math.random()}
-            href={"/login"}
-            className="aspect-square w-full bg-slate-600 rounded-full text-2xl text-slate-100 font-bold items-center flex justify-center"
-          >
-            {currentUser?.username.slice(0, 1).toUpperCase()}
-          </Link>
-          <button
-            onClick={logout}
-            className="w-full aspect-square text-3xl text-stone-600"
-          >
-            <i className="fa fa-sign-out"></i>
-          </button>
-        </nav>
-
-        {currentUser &&
-          (loading ? (
-            <div>Loading...</div>
-          ) : (
-            <AsideChats
-              ref={asideChatsRef}
-              selectedChat={selectedChat}
-              setSelectedChat={setSelectedChat}
-              currentUser={currentUser}
-            />
-          ))}
-
-        <div className="flex-initial w-7/10 bg-slate-200 rounded-2xl overlow-hidden">
-          {selectedChat && currentUser && (
-            <ChatPage
-              selectedChat={selectedChat}
-              setSelectedChat={setSelectedChat}
-              currentUserId={currentUser.id}
-            />
-          )}
-        </div> */}
       </section>
     </main>
   );
