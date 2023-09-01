@@ -1,0 +1,24 @@
+{
+    "terms":[
+        {
+            "title":"Interdum et malesuada fames ac ante ipsum",
+            "text":"Nullam vestibulum, mauris at fringilla laoreet, ligula nibh ullamcorper lacus, dapibus aliquet erat justo vel elit. Praesent finibus ligula eget sapien suscipit, id commodo nulla molestie. Etiam suscipit venenatis libero, et aliquet mauris sagittis in. Vestibulum et tempus lacus. Praesent tellus dolor, ullamcorper sit amet risus dignissim, vestibulum tempor purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer libero massa, eleifend vitae lacinia nec, rutrum tempus metus. Nunc a faucibus urna, et scelerisque mi. Nullam in mi vitae velit tempus vulputate. Nullam ante justo, convallis at orci sit amet, cursus aliquam velit."
+        },
+        {
+            "title":"Aliquam quis nunc facilisis lectus",
+            "text":"Aenean posuere elit vitae magna tempor aliquet. Mauris eros lorem, consectetur ac diam faucibus, aliquet dignissim sapien. Vestibulum id augue massa. Maecenas sagittis iaculis justo, id rhoncus elit feugiat ut. Proin volutpat dignissim nisi, vitae maximus sapien ullamcorper vitae. Vestibulum dapibus arcu ac lectus suscipit, id hendrerit massa suscipit. Donec venenatis, elit non hendrerit pharetra, tellus enim hendrerit enim, vitae vehicula lectus erat vulputate ante. Mauris vulputate augue quis purus sodales, vel consectetur libero lacinia. Vivamus vitae est in neque elementum suscipit. Cras in eleifend sapien"
+        },
+        {
+            "title":"Laboriosam iusto laudantium voluptatum velit voluptatibus voluptatem?",
+            "text":" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum in aliquam eos sit ea eligendi mollitia nemo delectus odit aliquid nesciunt quod cum nostrum inventore incidunt pariatur, magni repellendus deserunt. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam iusto laudantium voluptatum velit voluptatibus voluptatem? Animi, perspiciatis in deleniti neque impedit earum fugit! Dicta, iste maiores quod nesciunt officia sunt? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex sint eos repudiandae dolorum laborum quaerat veniam alias voluptatem provident dolorem culpa accusantium, reiciendis accusamus neque aspernatur illo iure! Soluta, eaque."
+        },
+        {
+            "title":"Etiam est tellus, vehicula quis lorem sed, rhoncus ornare leo",
+            "text":"Ex mea homero molestie democritum, mundi causae insolens mei at, sea ne reque nonumy. An probatus repudiare his. Ad vim choro appetere sententiae, eum utamur maiorum eloquentiam te. Duo idque movet no, at modus iriure diceret mel. Ne sit porro option accusata."
+        },
+        {
+            "title":"Doctus ponderum torquatos ei has",
+            "text":"An mei regione nominati, sit in debitis repudiare. Usu oblique labitur eu, ex mollis albucius inciderint per. Usu quis reque liberavisse ne, vix quando detraxit at. Nec in minimum deseruisse expetendis."
+        }
+    ]
+}

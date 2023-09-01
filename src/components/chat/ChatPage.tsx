@@ -37,24 +37,26 @@ const ChatPage = ({
         selectedChat ? "grid" : "hidden"
       } md:grid grid-rows-chat p-4 gap-5`}
     >
-      <header className="w-full bg-slate-100 rounded-2xl h-full shadow-md z-20 p-4 flex items-center gap-2 lg:gap-4">
+      <header className="w-full bg-slate-100 rounded-2xl h-full shadow-md z-20 p-4 flex items-center gap-2 sm:gap-4">
         <div className="h-2/3 sm:h-full aspect-square bg-indigo-900 rounded-full text-slate-100 font-semibold text-2xl flex justify-center items-center relative">
-          <div className="bg-green-700 w-4 aspect-square rounded-full absolute right-0 bottom-0"></div>
+          <div className="bg-green-700 w-3 sm:w-4 aspect-square rounded-full absolute right-0 bottom-0"></div>
           {interlocutorCredentials.name.slice(0, 1).toUpperCase()}
         </div>
 
-        <span className="text-xl sm:text-2xl font-bold truncate max-w-100px lg:max-w-1/5">
-          {interlocutorCredentials.name}ewdd
-        </span>
-        <span className="text-sm truncate max-w-100px lg:max-w-1/5">
-          {interlocutorCredentials.email}
-        </span>
+        <div className="flex flex-col lg:flex-row lg:gap-4 items-start lg:items-center">
+          <span className="text-lg sm:text-2xl font-bold truncate max-w-150px lg:max-w-1/2 xl:max-w-none">
+            {interlocutorCredentials.name}
+          </span>
+          <span className="text-sm truncate max-w-150px lg:max-w-1/2">
+            {interlocutorCredentials.email}
+          </span>
+        </div>
 
-        <button className="ml-auto text-2xl text-slate-600">
+        <button className="ml-auto text-xl lg:text-2xl text-slate-600">
           <i className="fa fa-cogs"></i>
         </button>
         <button
-          className="text-3xl text-slate-600"
+          className="text-2xl lg:text-3xl text-slate-600"
           onClick={() => setSelectedChat(undefined)}
         >
           <i className="fa fa-close"></i>

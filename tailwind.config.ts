@@ -28,12 +28,15 @@ const config: Config = {
       },
       minWidth: {
         "100": "100px",
+        "72": "18rem",
       },
       width: {
         "9/10": "90%",
         "7/10": "70%",
         "8/10": "80%",
         "1/10": "10%",
+        "2/5": "40%",
+        "150px": "150px",
       },
       minHeight: {
         "50px": "50px",
@@ -55,6 +58,7 @@ const config: Config = {
         medium: "minmax(0,2fr) minmax(0,6fr) minmax(0,10fr)",
         small: "minmax(0,1fr) minmax(0,4fr)",
         phone: "1fr",
+        profile: "minmax(0,1fr) minmax(0,2fr)",
       },
       gridTemplateRows: {
         all: "1fr",

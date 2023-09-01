@@ -12,15 +12,21 @@ export async function POST(req: Request) {
     const salt = await bcryptjs.genSalt(10);
     const hashedPassword = await bcryptjs.hash(password, salt);
 
-    const { rows } =
-      await client.sql`SELECT * FROM users WHERE Email=${email} OR Name=${name}`;
+    const users = await client.sql`SELECT * FROM users WHERE Name=${name}`;
 
-    if (rows.length === 0) {
+    const emails = await client.sql`SELECT * FROM users WHERE Email=${email}`;
+
+    if (users.rows.length === 0 && emails.rows.length === 0) {
       await client.sql`INSERT INTO users(Name,Email, Password) VALUES(${name},${email},${hashedPassword});`;
       return NextResponse.json({ message: "Added account", result: true });
-    } else {
+    } else if (users.rows.length !== 0) {
       return NextResponse.json(
-        { error: "User already exists" },
+        { error: "Username is taken." },
+        { status: 400 }
+      );
+    } else if (emails.rows.length !== 0) {
+      return NextResponse.json(
+        { error: "Email already in use." },
         { status: 400 }
       );
     }
