@@ -87,6 +87,7 @@ const SignUp = () => {
               ref={emailRef}
               required
             />
+             <div className=" w-full relative flex justify-center items-center">
             <input
               type="password"
               placeholder="Password"
@@ -99,6 +100,17 @@ const SignUp = () => {
               ref={passwordRef}
               required
             />
+             <i
+                className='fa fa-eye absolute right-5 top-1/2 -translate-y-1/2 text-xl text-slate-600 cursor-pointer'
+                onClick={() =>{
+                  if(passwordRef.current)
+                  (passwordRef.current.type =
+                    passwordRef.current.type === "text" ? "password" : "text")
+                }
+                 
+                }
+              ></i>
+            </div>
             <button
               type="submit"
               onClick={(e) => {

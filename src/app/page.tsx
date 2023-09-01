@@ -26,6 +26,7 @@ export default function Home() {
       await axios.get("/api/users/logout");
       toast.success("Logout successful!");
       router.push("/");
+      window.location.reload();
     } catch (error: any) {
       console.log(error.message);
       toast.error(error.message);
