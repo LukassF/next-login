@@ -23,7 +23,7 @@ const Input = forwardRef(
         value={value}
         //@ts-ignore
         ref={ref}
-        className={`rounded-full py-1 px-4 bg-stone-100 bg-opacity-70 outline-none text-black ${className}`}
+        className={`rounded-full py-1 px-4 bg-stone-100 w-8/10 bg-opacity-70 min-w-none outline-none text-black ${className}`}
       />
     );
   }

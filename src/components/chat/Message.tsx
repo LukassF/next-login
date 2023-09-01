@@ -11,12 +11,12 @@ const Message = ({
 }) => {
   const isMine = currentUserId == message.user_id;
   const isNextElse = nextmessage !== message.user_id || deltaTime > 10;
-  const timezoneOffset = new Date(message.date).getTimezoneOffset();
+  // const timezoneOffset = new Date(message.date).getTimezoneOffset();
 
   return (
     <div
       tabIndex={0}
-      className={`lg:max-w-1/3 flex justify-center items-end gap-3 group focus:mb-10 transition-all duration-300 cursor-default relative ${
+      className={`max-w-9/10 xl:max-w-1/3 flex justify-center items-end gap-1 lg:gap-3 group focus:mb-10 transition-all duration-300 cursor-default relative ${
         isMine ? "self-end" : ""
       } ${
         nextmessage !== message.user_id ? (deltaTime > 10 ? "" : "mb-10") : ""
@@ -24,7 +24,7 @@ const Message = ({
     >
       {!isMine && (
         <div
-          className={`h-8 aspect-square bg-indigo-900 rounded-full text-slate-100 flex justify-center items-center text-sm ${
+          className={`h-8 aspect-square bg-indigo-900 rounded-full text-slate-100 hidden  sm:flex md:hidden lg:flex justify-center items-center text-sm ${
             !isNextElse && "opacity-0"
           }`}
         >
@@ -32,7 +32,7 @@ const Message = ({
         </div>
       )}
       <div
-        className={`flex-1  px-4 py-2 text-slate-100 text-lg rounded-2xl break-all relative ${
+        className={`flex-1  px-4 py-1 text-slate-100 text-lg rounded-2xl break-all relative ${
           isMine ? "bg-slate-800" : "bg-slate-500"
         } `}
       >
@@ -40,7 +40,7 @@ const Message = ({
       </div>
       {isMine && (
         <div
-          className={`h-8 aspect-square bg-indigo-900 rounded-full text-slate-100 flex justify-center items-center text-sm ${
+          className={`h-8 aspect-square bg-indigo-900 rounded-full text-slate-100 hidden sm:flex md:hidden lg:flex justify-center items-center text-sm ${
             !isNextElse && "opacity-0"
           }`}
         >
@@ -50,7 +50,9 @@ const Message = ({
 
       <span
         className={`text-sm absolute opacity-0 group-focus:opacity-100 transition-all duration-300 ${
-          isMine ? "right-14" : "left-14"
+          isMine
+            ? "right-2 sm:right-14 md:right-2 lg:right-14"
+            : "left-2 sm:left-14 md:left-2 lg:left-14"
         } -bottom-5 text-slate-600 font-bold`}
       >
         {/* {(new Date(message.date).getHours() + timezoneOffset / 60 > 24

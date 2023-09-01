@@ -20,11 +20,12 @@ const ChannelButton = ({
   const isSelected = useMemo(() => {
     return selectedChat && selectedChat.id == chat.id;
   }, [selectedChat, chat]);
+
   return (
     <button
       key={chat.id}
       onClick={() => setSelectedChat(chat)}
-      className={` w-full bg-slate-600 min-h-50px p-2 flex justify-start items-center gap-3 rounded-full bg-opacity-10 ${
+      className={` w-full bg-slate-600 min-h-50px p-2 flex justify-start items-center gap-3 rounded-2xl bg-opacity-10 ${
         hasSeen ? "text-stone-600" : "text-stone-900 font-extrabold"
       } `}
     >
@@ -40,11 +41,13 @@ const ChannelButton = ({
         <span
           className={` ${
             isSelected ? "text-indigo-900" : "text-slate-600 "
-          }  font-semibold`}
+          }  font-semibold truncate max-w-100px xs:max-w-150px md:max-w-100px xl:max-w-150px`}
         >
           {username}
         </span>
-        <span className="text-xs font-normal text-slate-600">{email}</span>
+        <span className="text-xs font-normal text-slate-600 truncate max-w-100px xs:max-w-150px md:max-w-100px xl:max-w-150px">
+          {email}
+        </span>
       </div>
 
       {!hasSeen && (

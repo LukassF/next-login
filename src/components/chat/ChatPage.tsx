@@ -32,17 +32,23 @@ const ChatPage = ({
   }, [selectedChat]);
 
   return (
-    <main className="flex flex-1 h-full flex-col items-center justify-start bg-slate-200 rounded-2xl p-4 gap-4">
-      <header className="w-full bg-slate-100 rounded-2xl h-20 shadow-md z-20 p-4 flex items-center gap-4">
-        <div className="h-full aspect-square bg-indigo-900 rounded-full text-slate-100 font-semibold text-2xl flex justify-center items-center relative">
+    <main
+      className={`max-h-full w-full bg-slate-200 sm:rounded-2xl overflow-hidden ${
+        selectedChat ? "grid" : "hidden"
+      } md:grid grid-rows-chat p-4 gap-5`}
+    >
+      <header className="w-full bg-slate-100 rounded-2xl h-full shadow-md z-20 p-4 flex items-center gap-2 lg:gap-4">
+        <div className="h-2/3 sm:h-full aspect-square bg-indigo-900 rounded-full text-slate-100 font-semibold text-2xl flex justify-center items-center relative">
           <div className="bg-green-700 w-4 aspect-square rounded-full absolute right-0 bottom-0"></div>
           {interlocutorCredentials.name.slice(0, 1).toUpperCase()}
         </div>
 
-        <span className="text-2xl font-bold">
-          {interlocutorCredentials.name}
+        <span className="text-xl sm:text-2xl font-bold truncate max-w-100px lg:max-w-1/5">
+          {interlocutorCredentials.name}ewdd
         </span>
-        <span className="text-sm">{interlocutorCredentials.email}</span>
+        <span className="text-sm truncate max-w-100px lg:max-w-1/5">
+          {interlocutorCredentials.email}
+        </span>
 
         <button className="ml-auto text-2xl text-slate-600">
           <i className="fa fa-cogs"></i>
@@ -55,7 +61,7 @@ const ChatPage = ({
         </button>
       </header>
       {currentUserId && (
-        <div className="flex-1 w-full rounded-2xl overflow-hidden">
+        <div className="h-full w-full rounded-2xl overflow-hidden shadow-md relative grid grid-rows-chatlog">
           <ChatLog
             messages={messages}
             currentUserId={currentUserId}

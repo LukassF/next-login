@@ -1,7 +1,7 @@
 import React from "react";
 
 const Divider = ({ date, margin }: { date: Date; margin: string }) => {
-  const timezoneOffset = new Date(date).getTimezoneOffset();
+  //   const timezoneOffset = new Date(date).getTimezoneOffset();
   return (
     <span className={`${margin} w-full text-center text-sm`}>
       {new Date(date).toDateString()}{" "}

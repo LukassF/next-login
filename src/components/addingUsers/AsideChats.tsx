@@ -104,9 +104,14 @@ const AsideChats = forwardRef((props: any, ref) => {
   );
 
   return (
-    <aside className="flex-1 bg-slate-300 flex flex-col gap-5 px-4 py-6 rounded-2xl">
+    <aside
+      className={`h-full w-full bg-slate-300 ${
+        props.selectedChat ? "hidden" : "flex"
+      } md:flex flex-col gap-5 px-4 py-6 sm:rounded-2xl`}
+    >
       <AddForm />
       <hr className="bg-opacity-50"></hr>
+
       {/* fix scrollbar!!! */}
       <div className=" scrollbar flex flex-col gap-2 scroll-px-2 h-full overflow-y-auto scrollbar-track-blue-900 scrollbar-thin">
         {availableChats && availableChats.length > 0 ? (
