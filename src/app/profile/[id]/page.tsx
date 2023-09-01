@@ -34,6 +34,7 @@ const Profile = ({ params }: { params: { id: number } }) => {
       console.log(error.message);
       toast.error(error.message);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useLayoutEffect(() => {

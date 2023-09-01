@@ -56,7 +56,7 @@ const LogIn = () => {
           user.password.length === 0 || errorContent === "Invalid password"
         );
     });
-    //react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return (

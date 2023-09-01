@@ -50,7 +50,7 @@ const SignUp = () => {
       if (passwordRef.current)
         passwordRef.current.classList.toggle(cls, user.password.length < 5);
     });
-    //react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return (

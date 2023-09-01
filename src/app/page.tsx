@@ -32,6 +32,7 @@ export default function Home() {
     } finally {
       setLogOutLoading(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -47,11 +48,13 @@ export default function Home() {
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (asideChatsRef.current)
       asideChatsRef.current.changeAvailableChats(helper);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [helper]);
 
   if (loading) return <Loader />;
