@@ -67,7 +67,7 @@ export default function Home() {
           <Link
             key={Math.random()}
             href={"/login"}
-            className="h-full xs:w-full sm:w-3/4 md:w-full xs:h-auto aspect-square  bg-slate-600 rounded-full text-xl xs:text-2xl text-slate-100 font-bold items-center flex justify-center"
+            className="h-full xs:w-full sm:w-3/4 md:w-full xl:w-3/4 xs:h-auto aspect-square  bg-slate-600 rounded-full text-xl xs:text-2xl text-slate-100 font-bold items-center flex justify-center"
           >
             {currentUser?.username.slice(0, 1).toUpperCase()}
           </Link>

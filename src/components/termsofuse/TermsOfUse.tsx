@@ -15,7 +15,7 @@ const TermsOfUse = () => {
           <h1 className="text-md lg:text-xl text-indigo-900 font-medium">
             {term.title}
           </h1>
-          <p className="text-xs lg:text-sm text-slate-600 px-6">{term.text}</p>
+          <p className="text-xs lg:text-sm text-slate-400 px-6">{term.text}</p>
         </div>
       ))}
     </article>

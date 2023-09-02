@@ -47,9 +47,6 @@ const Profile = ({ params }: { params: { id: number } }) => {
       .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
 
   if (loading) return <Loader />;
 
@@ -74,8 +71,8 @@ const Profile = ({ params }: { params: { id: number } }) => {
             doloremque. Eos, obcaecati?
           </p>
 
-          <div className="w-full flex flex-col xs:flex-row  md:flex-col xl:flex-row justify-around items-center">
-            <div className="flex flex-col items-center justify-center text-slate-500 text-lg gap-1">
+         
+            <div className="flex flex-col items-center justify-center text-slate-500 text-md gap-1">
               Messages sent
               <span className="flex gap-2 items-center justify-center text-indigo-900">
                 <i className="fa fa-message"></i>
@@ -83,16 +80,16 @@ const Profile = ({ params }: { params: { id: number } }) => {
               </span>
             </div>
 
-            <div className="flex flex-col items-center justify-center text-slate-500 text-lg gap-1 ">
+            <div className="flex flex-col items-center justify-center text-slate-500 text-md gap-1 ">
               Chats attended
               <span className="flex gap-2 items-center justify-center text-indigo-900">
                 <i className="fa fa-people-group"></i>
                 {currentUser.numchats}
               </span>
             </div>
-          </div>
+          
 
-          <div className="flex flex-col items-center justify-center text-slate-500 text-lg gap-1 -mt-4">
+          <div className="flex flex-col items-center justify-center text-slate-500 text-md gap-1">
             User id
             <span className="flex gap-2 items-center justify-center text-indigo-900">
               <i className="fa fa-file"></i>

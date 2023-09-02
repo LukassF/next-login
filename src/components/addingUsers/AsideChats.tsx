@@ -113,7 +113,7 @@ const AsideChats = forwardRef((props: any, ref) => {
       <hr className="bg-opacity-50"></hr>
 
       {/* fix scrollbar!!! */}
-      <div className=" scrollbar flex flex-col gap-2 scroll-px-2 h-full overflow-y-auto scrollbar-track-blue-900 scrollbar-thin">
+      <div className=" scrollbar flex flex-col gap-2 scroll-px-2 h-full overflow-y-auto scrollbar-track-blue-900 scrollbar-thin scroll-smooth">
         {availableChats && availableChats.length > 0 ? (
           availableChats.map((chat) => {
             const { email, username } = determineUser(chat);
@@ -121,6 +121,7 @@ const AsideChats = forwardRef((props: any, ref) => {
             const hasSeen = newHasSeen.includes(chat.id.toString());
 
             return (
+            
               <ChannelButton
                 key={Math.random()}
                 chat={chat}
@@ -130,6 +131,7 @@ const AsideChats = forwardRef((props: any, ref) => {
                 setSelectedChat={props.setSelectedChat}
                 hasSeen={hasSeen}
               />
+             
             );
           })
         ) : (

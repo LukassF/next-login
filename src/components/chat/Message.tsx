@@ -32,7 +32,7 @@ const Message = ({
         </div>
       )}
       <div
-        className={`flex-1  px-4 py-1 text-slate-100 text-lg rounded-2xl break-all relative ${
+        className={`flex-1  px-4 py-1 text-slate-100 text-lg rounded-2xl break-all hyphens-auto relative ${
           isMine ? "bg-slate-800" : "bg-slate-500"
         } `}
       >
