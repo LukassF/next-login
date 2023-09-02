@@ -55,7 +55,7 @@ const SignUp = () => {
 
   return (
     <main className="w-screen h-screen overflow-hidden sm:p-6 bg-indigo-900">
-      <section className="w-full h-full bg-slate-200 sm:rounded-2xl grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
+      <section className="w-full h-full bg-slate-200 sm:rounded-2xl grid grid-cols-1 lg:grid-cols-2 p-4 gap-4 overflow-x-hidden overflow-y-auto scrollbar scrollbar-thin">
         <article className="flex flex-col items-center justify-center gap-4 px-5 sm:px-20">
           <h1 className="text-4xl sm:text-5xl font-medium text-center">
             Welcome to{" "}
@@ -87,28 +87,26 @@ const SignUp = () => {
               ref={emailRef}
               required
             />
-             <div className=" w-full relative flex justify-center items-center">
-            <input
-              type="password"
-              placeholder="Password"
-              className="py-3 px-5 text-lg rounded-2xl outline-none border-2 border-solid w-full min-w-72"
-              onChange={(e) => {
-                e.target.classList.remove(...errorClass);
-                setUser({ ...user, password: e.target.value });
-              }}
-              value={user.password}
-              ref={passwordRef}
-              required
-            />
-             <i
-                className='fa fa-eye absolute right-5 top-1/2 -translate-y-1/2 text-xl text-slate-600 cursor-pointer'
-                onClick={() =>{
-                  if(passwordRef.current)
-                  (passwordRef.current.type =
-                    passwordRef.current.type === "text" ? "password" : "text")
-                }
-                 
-                }
+            <div className=" w-full relative flex justify-center items-center">
+              <input
+                type="password"
+                placeholder="Password"
+                className="py-3 px-5 text-lg rounded-2xl outline-none border-2 border-solid w-full min-w-72"
+                onChange={(e) => {
+                  e.target.classList.remove(...errorClass);
+                  setUser({ ...user, password: e.target.value });
+                }}
+                value={user.password}
+                ref={passwordRef}
+                required
+              />
+              <i
+                className="fa fa-eye absolute right-5 top-1/2 -translate-y-1/2 text-xl text-slate-600 cursor-pointer"
+                onClick={() => {
+                  if (passwordRef.current)
+                    passwordRef.current.type =
+                      passwordRef.current.type === "text" ? "password" : "text";
+                }}
               ></i>
             </div>
             <button

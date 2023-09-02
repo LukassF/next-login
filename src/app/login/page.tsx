@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useState, useCallback, useRef,useEffect } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -60,10 +60,9 @@ const LogIn = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-
   return (
     <main className="w-screen h-screen overflow-hidden sm:p-6 bg-indigo-900">
-      <section className="w-full h-full bg-slate-200 sm:rounded-2xl grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
+      <section className="w-full h-full bg-slate-200 sm:rounded-2xl grid grid-cols-1 lg:grid-cols-2 p-4 gap-4 overflow-x-hidden overflow-y-auto scrollbar scrollbar-thin">
         <div className="flex flex-col items-center justify-center gap-4 px-5 sm:px-20">
           <h1 className="text-4xl sm:text-5xl font-medium text-center">
             Welcome to{" "}
@@ -97,14 +96,12 @@ const LogIn = () => {
                 required
               />
               <i
-                className='fa fa-eye absolute right-5 top-1/2 -translate-y-1/2 text-xl text-slate-600 cursor-pointer'
-                onClick={() =>{
-                  if(passwordRef.current)
-                  (passwordRef.current.type =
-                    passwordRef.current.type === "text" ? "password" : "text")
-                }
-                 
-                }
+                className="fa fa-eye absolute right-5 top-1/2 -translate-y-1/2 text-xl text-slate-600 cursor-pointer"
+                onClick={() => {
+                  if (passwordRef.current)
+                    passwordRef.current.type =
+                      passwordRef.current.type === "text" ? "password" : "text";
+                }}
               ></i>
             </div>
             <button
@@ -141,7 +138,6 @@ const LogIn = () => {
         </div>
 
         <article className="hidden lg:block bg-cover bg-no-repeat bg-center bg-[url('https://i.pinimg.com/originals/6b/1b/22/6b1b22573f9f3d4bba11a9fa5cb45652.png')]"></article>
-
       </section>
     </main>
   );

@@ -63,8 +63,8 @@ const config: Config = {
       gridTemplateRows: {
         all: "1fr",
         phone: "1fr 10fr",
-        chat: "minmax(0,2fr) minmax(0,12fr)",
-        chatlog: "minmax(0,9fr) minmax(0,1fr)",
+        chat: "2fr 12fr",
+        chatlog: "9fr 1fr",
       },
     },
   },

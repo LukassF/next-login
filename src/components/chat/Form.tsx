@@ -14,7 +14,7 @@ const Form = ({ selectedChat }: { selectedChat: number }) => {
         formRef.current?.reset();
       }}
       ref={formRef}
-      className="shadow-[0_35px_60px_-15px_rgba(0,0,0,0.5)] flex-initial bg-slate-100 h-full px-4 flex items-center justify-between gap-4 "
+      className="min-h-[50px] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.5)] flex-initial bg-slate-100 h-full px-4 flex items-center justify-between gap-4 "
     >
       <Input
         type="text"
