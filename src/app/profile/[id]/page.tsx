@@ -47,7 +47,6 @@ const Profile = ({ params }: { params: { id: number } }) => {
       .finally(() => setLoading(false));
   }, []);
 
-
   if (loading) return <Loader />;
 
   return (
@@ -71,23 +70,21 @@ const Profile = ({ params }: { params: { id: number } }) => {
             doloremque. Eos, obcaecati?
           </p>
 
-         
-            <div className="flex flex-col items-center justify-center text-slate-500 text-md gap-1">
-              Messages sent
-              <span className="flex gap-2 items-center justify-center text-indigo-900">
-                <i className="fa fa-message"></i>
-                {currentUser.nummessages}
-              </span>
-            </div>
+          <div className="flex flex-col items-center justify-center text-slate-500 text-md gap-1">
+            Messages sent
+            <span className="flex gap-2 items-center justify-center text-indigo-900">
+              <i className="fa fa-message"></i>
+              {currentUser.nummessages}
+            </span>
+          </div>
 
-            <div className="flex flex-col items-center justify-center text-slate-500 text-md gap-1 ">
-              Chats attended
-              <span className="flex gap-2 items-center justify-center text-indigo-900">
-                <i className="fa fa-people-group"></i>
-                {currentUser.numchats}
-              </span>
-            </div>
-          
+          <div className="flex flex-col items-center justify-center text-slate-500 text-md gap-1 ">
+            Chats attended
+            <span className="flex gap-2 items-center justify-center text-indigo-900">
+              <i className="fa fa-people-group"></i>
+              {currentUser.numchats}
+            </span>
+          </div>
 
           <div className="flex flex-col items-center justify-center text-slate-500 text-md gap-1">
             User id

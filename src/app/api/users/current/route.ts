@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
       LEFT JOIN chats c ON c.user_id_1=u.Id OR c.user_id_2=u.Id 
       LEFT JOIN messages m ON m.user_id=u.Id 
       GROUP BY u.Id 
-      HAVING u.Id=${currentUser.id}`;
+      HAVING u.Id=${currentUser.data.id}`;
 
     return NextResponse.json({
       user: userInfo.rows[0],
