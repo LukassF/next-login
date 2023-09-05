@@ -47,7 +47,10 @@ export default function Home() {
       .then(() => {
         if (asideChatsRef.current) console.log(asideChatsRef);
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err);
+        router.push("/login");
+      })
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
