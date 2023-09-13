@@ -65,7 +65,7 @@ const ChatLog = ({
 
   return (
     <>
-      <div className="w-full bg-slate-100 overflow-y-auto overflow-x-hidden flex flex-col justify-start items-start gap-1 px-5 py-8 h-full scrollbar scrollbar-thin">
+      <div className="w-full bg-slate-100 overflow-y-auto overflow-x-hidden flex flex-col justify-start items-start gap-1 px-5 py-8 h-full scrollbar-thin">
         <h1 className="text-center w-full font-bold text-xl lg:text-2xl">
           This is the start of a new chat with {interlocutor.name}.
         </h1>

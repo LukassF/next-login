@@ -7,12 +7,10 @@ export async function middleware(req: NextRequest) {
   const isPublicPath = path === "/login" || path === "/signup";
 
   const token = req.cookies.get("token")?.value || "";
-  const currentId = req.cookies.get("currentId")?.value || "";
+  // const currentId = req.cookies.get("currentId")?.value || "";
 
   if (isPublicPath && token) {
-    return NextResponse.redirect(
-      new URL(`${currentId ? "/profile/" + currentId : "/"}`, req.nextUrl)
-    );
+    return NextResponse.redirect(new URL("/", req.nextUrl));
   }
 
   if (!isPublicPath && !token) {
@@ -21,5 +19,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/login", "/signup", "/profile/:id*"],
+  matcher: ["/", "/login", "/signup"],
 };

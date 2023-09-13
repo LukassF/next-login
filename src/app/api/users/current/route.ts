@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const userInfo =
       // await client.sql`SELECT Id,Name,Email FROM users WHERE id=${currentUserId.id}`;
       await client.sql`
-      SELECT u.Id,u.Name,u.Email,COUNT(DISTINCT c.Id) AS NumChats, COUNT(DISTINCT m.id) AS NumMessages FROM users u 
+      SELECT COUNT(DISTINCT c.Id) AS NumChats, COUNT(DISTINCT m.id) AS NumMessages FROM users u 
       LEFT JOIN chats c ON c.user_id_1=u.Id OR c.user_id_2=u.Id 
       LEFT JOIN messages m ON m.user_id=u.Id 
       GROUP BY u.Id 

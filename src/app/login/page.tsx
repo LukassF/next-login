@@ -32,7 +32,7 @@ const LogIn = () => {
         setLoading(true);
         const response = await axios.post("/api/users/login", user);
         toast.success("Logged in successfully!");
-        router.push(`/profile/${response.data.id}`);
+        router.push(`/`);
         window.location.reload();
       } catch (error: any) {
         if (error.response.data.error) {
@@ -62,14 +62,14 @@ const LogIn = () => {
 
   return (
     <main className="w-screen h-screen overflow-hidden sm:p-6 bg-indigo-900">
-      <section className="w-full h-full bg-slate-200 sm:rounded-2xl grid grid-cols-1 lg:grid-cols-2 p-4 gap-4 overflow-x-hidden overflow-y-auto scrollbar scrollbar-thin">
+      <section className="w-full h-full bg-slate-200 sm:rounded-2xl grid grid-cols-1 lg:grid-cols-2 p-4 gap-4 overflow-x-hidden overflow-y-auto scrollbar-thin">
         <div className="flex flex-col items-center justify-center gap-4 px-5 sm:px-20">
           <h1 className="text-4xl sm:text-5xl font-medium text-center">
             Welcome to{" "}
             <span className="text-indigo-900 font-bold">Text&apos;em</span>!
           </h1>
           <h2 className="text-xl font-medium text-slate-600">Log In below</h2>
-          <form className="flex flex-col items-center w-full w-1/2 gap-4">
+          <form className="flex flex-col items-center w-full gap-4">
             <input
               type="text"
               value={user.nameOrEmail}

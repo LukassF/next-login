@@ -8,6 +8,8 @@ import { Watch } from "react-loader-spinner";
 import Link from "next/link";
 
 const errorClass = ["bg-rose-100", "border-red-600"];
+const regexEmail =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 const SignUp = () => {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -27,19 +29,26 @@ const SignUp = () => {
     if (
       user.name.length >= 5 &&
       user.email.length >= 5 &&
-      user.password.length >= 5
+      user.password.length >= 5 &&
+      user.email.match(regexEmail)
     )
       try {
         setLoading(true);
         await axios.post("/api/users/signup", user);
         toast.success("Signed Up successfully!");
-        router.push("/");
+        await axios.post("/api/users/login", {
+          nameOrEmail: user.name,
+          password: user.password,
+        });
+        router.push(`/`);
+        window.location.reload();
       } catch (error: any) {
         errorContent = error.response.data.error;
         toast.error(errorContent);
       } finally {
         setLoading(false);
       }
+    else if (!user.email.match(regexEmail)) toast.error("Invalid email adress");
     else toast.error("All fields have to be at least 5 characters long.");
 
     errorClass.map((cls) => {
@@ -47,6 +56,8 @@ const SignUp = () => {
         nameRef.current.classList.toggle(cls, user.name.length < 5);
       if (emailRef.current)
         emailRef.current.classList.toggle(cls, user.email.length < 5);
+      if (emailRef.current)
+        emailRef.current.classList.toggle(cls, !user.email.match(regexEmail));
       if (passwordRef.current)
         passwordRef.current.classList.toggle(cls, user.password.length < 5);
     });
@@ -55,14 +66,14 @@ const SignUp = () => {
 
   return (
     <main className="w-screen h-screen overflow-hidden sm:p-6 bg-indigo-900">
-      <section className="w-full h-full bg-slate-200 sm:rounded-2xl grid grid-cols-1 lg:grid-cols-2 p-4 gap-4 overflow-x-hidden overflow-y-auto scrollbar scrollbar-thin">
+      <section className="w-full h-full bg-slate-200 sm:rounded-2xl grid grid-cols-1 lg:grid-cols-2 p-4 gap-4 overflow-x-hidden overflow-y-auto scrollbar-thin">
         <article className="flex flex-col items-center justify-center gap-4 px-5 sm:px-20">
           <h1 className="text-4xl sm:text-5xl font-medium text-center">
             Welcome to{" "}
             <span className="text-indigo-900 font-bold">Text&apos;em</span>!
           </h1>
           <h2 className="text-xl font-medium text-slate-600">Sign up below</h2>
-          <form className="flex flex-col items-center w-full w-1/2 gap-4">
+          <form className="flex flex-col items-center w-full gap-4">
             <input
               type="text"
               placeholder="Username"
