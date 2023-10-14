@@ -68,7 +68,7 @@ const SignUp = () => {
     <main className="w-screen h-screen overflow-hidden sm:p-6 bg-indigo-900">
       <section className="w-full h-full bg-slate-200 sm:rounded-2xl grid grid-cols-1 lg:grid-cols-2 p-4 gap-4 overflow-x-hidden overflow-y-auto scrollbar-thin">
         <article className="flex flex-col items-center justify-center gap-4 px-5 sm:px-20">
-          <h1 className="text-4xl sm:text-5xl font-medium text-center">
+          <h1 className="text-3xl md:text-4xl xl:text-5xl font-medium text-center sm:whitespace-nowrap">
             Welcome to{" "}
             <span className="text-indigo-900 font-bold">Text&apos;em</span>!
           </h1>
@@ -77,7 +77,7 @@ const SignUp = () => {
             <input
               type="text"
               placeholder="Username"
-              className="py-3 px-5 text-lg rounded-2xl outline-none border-2 border-solid w-full min-w-72"
+              className="py-3 px-5 text-lg rounded-md outline-none border-2 border-solid w-full min-w-72"
               onChange={(e) => {
                 e.target.classList.remove(...errorClass);
                 setUser({ ...user, name: e.target.value });
@@ -89,7 +89,7 @@ const SignUp = () => {
             <input
               type="email"
               placeholder="Email"
-              className="py-3 px-5 text-lg rounded-2xl outline-none border-2 border-solid w-full min-w-72"
+              className="py-3 px-5 text-lg rounded-md outline-none border-2 border-solid w-full min-w-72"
               onChange={(e) => {
                 e.target.classList.remove(...errorClass);
                 setUser({ ...user, email: e.target.value });
@@ -102,7 +102,7 @@ const SignUp = () => {
               <input
                 type="password"
                 placeholder="Password"
-                className="py-3 px-5 text-lg rounded-2xl outline-none border-2 border-solid w-full min-w-72"
+                className="py-3 px-5 text-lg rounded-md outline-none border-2 border-solid w-full min-w-72"
                 onChange={(e) => {
                   e.target.classList.remove(...errorClass);
                   setUser({ ...user, password: e.target.value });
@@ -126,7 +126,7 @@ const SignUp = () => {
                 e.preventDefault();
                 signUpUser();
               }}
-              className="h-14 w-full min-w-72 flex justify-center items-center py-2 px-5 rounded-2xl self-center border-4 border-solid border-indigo-900 text-indigo-900 font-bold text-xl hover:bg-indigo-900 hover:text-slate-100 focus:bg-indigo-900 focus:text-slate-100 transition-all"
+              className="h-14 w-full min-w-72 flex justify-center items-center py-2 px-5 rounded-md self-center border-2 border-solid border-indigo-900 text-indigo-900 font-medium text-xl hover:bg-indigo-900 hover:text-slate-100 focus:bg-indigo-900 focus:text-slate-100 transition-all"
             >
               {loading ? (
                 <Watch
@@ -141,13 +141,13 @@ const SignUp = () => {
               )}
             </button>
           </form>
-          <h2 className="text-xl font-medium text-slate-600">
+          <h2 className="text-md font-medium text-slate-600 mt-5">
             Already have an account?
           </h2>
           <Link
             key={Math.random()}
             href={"/login"}
-            className=" h-14 w-full min-w-72 flex justify-center items-center opacity-70  py-2 px-5 rounded-2xl self-center border-4 border-solid border-slate-600 text-slate-600 font-bold text-xl hover:bg-slate-600 hover:text-slate-100 transition-all"
+            className=" h-14 w-full min-w-72 flex justify-center items-center opacity-70  py-2 px-5 rounded-md self-center border-2 border-solid border-slate-600 text-slate-600 font-medium text-xl hover:bg-slate-600 hover:text-slate-100 transition-all"
           >
             Log In
           </Link>

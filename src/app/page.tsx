@@ -113,7 +113,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      <main className="h-screen bg-cover w-screen bg-center bg-[url('https://wallpaper.dog/large/17027482.jpg')] py-0 px-0 sm:py-6 sm:px-4 lg:px-6 flex items-stretch">
+      <main className="h-screen bg-cover w-screen bg-center bg-indigo-900 py-0 px-0 sm:py-6 sm:px-4 lg:px-6 flex items-stretch">
         <section className="min-w-full sm:rounded-2xl overflow-hidden grid grid-rows-phone xs:grid-rows-1 grid-cols-phone xs:grid-cols-small md:grid-cols-medium lg:grid-cols-main sm:gap-2">
           <nav className="h-full w-full flex justify-between xs:flex-col bg-slate-100 items-center sm:rounded-2xl px-4 py-2 xs:py-4">
             <div
